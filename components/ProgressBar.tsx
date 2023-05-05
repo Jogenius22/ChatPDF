@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import { LinearProgress, Box, Typography } from "@mui/material";
 
-const ProgressBar = () => {
+const ProgressBar = ({ progress }) => {
   return (
-    <div>ProgressBar</div>
-  )
-}
+    <Box>
+      <LinearProgress variant="determinate" value={progress} />
+      <Typography>{progress}%</Typography>
+    </Box>
+  );
+};
 
-export default ProgressBar
+export default ProgressBar;
