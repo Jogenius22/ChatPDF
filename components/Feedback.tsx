@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Box } from "@mui/material";
 
-const Feedback = ({ message }) => {
+interface FeedbackProps {
+  message: string;
+  onFeedbackSubmit?: (feedback: string) => void;
+}
+
+const Feedback = ({ message, onFeedbackSubmit }: FeedbackProps) => {
   const [feedback, setFeedback] = useState("");
 
   const handleSubmit = () => {
-    // TODO: Send feedback to the backend for further processing
+    if (onFeedbackSubmit) {
+      onFeedbackSubmit(feedback);
+    }
     setFeedback("");
     alert("Thank you for your feedback!");
   };

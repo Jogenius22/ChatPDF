@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { TextField, Button, Typography, Box } from "@mui/material";
 
-const Chat = () => {
-  const [messages, setMessages] = useState([]);
+interface Message {
+  text: string;
+  sender: "user" | "ai";
+}
+
+const Chat = ({ modelId }: { modelId: string }) => {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
 
   const sendMessage = async () => {
@@ -10,9 +15,21 @@ const Chat = () => {
       setMessages([...messages, { text: userInput, sender: "user" }]);
       setUserInput("");
 
-      // TODO: Send userInput to the AI model and get the response
-      const aiResponse = "This is a sample AI response.";
-      setMessages([...messages, { text: userInput, sender: "user" }, { text: aiResponse, sender: "ai" }]);
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userInput, modelId }),
+        });
+        const data = await response.json();
+        setMessages([
+          ...messages,
+          { text: userInput, sender: "user" },
+          { text: data.response, sender: "ai" },
+        ]);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   };
 

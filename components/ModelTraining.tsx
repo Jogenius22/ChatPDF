@@ -2,12 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
 import ProgressBar from "./ProgressBar";
 
-const ModelTraining = ({ text }) => {
+interface ModelTrainingProps {
+  text: string;
+  onModelSelect: (modelId: string) => void;
+}
+
+const ModelTraining = ({ text }: ModelTrainingProps) => {
   const [trainingProgress, setTrainingProgress] = useState(0);
 
   useEffect(() => {
     const trainModel = async () => {
-      // TODO: Train a custom AI model using OpenAI API
+      // Simulate training progress, replace with actual API call
+      for (let i = 0; i <= 100; i += 10) {
+        setTimeout(() => setTrainingProgress(i), i * 100);
+      }
     };
 
     if (text) {

@@ -1,21 +1,24 @@
-import '../styles/globals.css';
-import { CssBaseline } from '@mui/material';
-import { useEffect } from 'react';
-import { Chat, Feedback, Login, ModelTraining, Navbar, PDFProcessing, ProgressBar, UploadPDF } from '../components';
+// chatpdf/pages/_app.tsx
+import type { AppProps } from "next/app";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#3f51b5",
+    },
+    secondary: {
+      main: "#f44336",
+    },
+  },
+});
 
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <CssBaseline />
+    <ThemeProvider theme={theme}>
       <Component {...pageProps} />
-    </>
+    </ThemeProvider>
   );
 }
 

@@ -1,7 +1,11 @@
 import React from "react";
 import { LinearProgress, Box, Typography } from "@mui/material";
 
-const ProgressBar = ({ progress }) => {
+interface ProgressBarProps {
+  progress: number;
+}
+
+const ProgressBar = ({ progress }: ProgressBarProps) => {
   return (
     <Box>
       <LinearProgress variant="determinate" value={progress} />
