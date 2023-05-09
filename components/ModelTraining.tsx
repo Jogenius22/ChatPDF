@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import ProgressBar from "./ProgressBar";
 
 interface ModelTrainingProps {
-  text: string;
+  text?: string;
   onModelSelect: (modelId: string) => void;
 }
 

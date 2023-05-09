@@ -32,10 +32,10 @@ const HomePage = () => {
       <div>
         <Login />
         <UploadPDF onFileUpload={handleFileUpload} />
-        {file && <PDFProcessing file={file} onTextExtract={handlePDFProcessing} />}
+        {file && <PDFProcessing file={file} onTextExtracted={handlePDFProcessing} />}
         {text && <ModelTraining onModelSelect={handleModelTraining} />}
         {modelId && (
-          <Chat text={text} modelId={modelId} onMessage={handleMessage} />
+          <Chat modelId={modelId} onMessage={handleMessage} />
         )}
         {message && !feedbackSubmitted && (
           <Feedback message={message} onFeedbackSubmit={handleFeedbackSubmit} />

@@ -4,6 +4,7 @@ import ProgressBar from "./ProgressBar";
 
 interface PDFProcessingProps {
   file: File;
+  onTextExtracted: (text: string) => void;
 }
 
 const PDFProcessing = ({ file }: PDFProcessingProps) => {

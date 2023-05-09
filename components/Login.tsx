@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center h-screen">
       <GoogleLogin
-        clientId="YOUR_GOOGLE_CLIENT_ID"
+        clientId="111479472545842687566"
         buttonText="Login with Google"
         onSuccess={handleLoginSuccess}
         onFailure={handleLoginFailure}
