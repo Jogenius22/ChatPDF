@@ -6,7 +6,12 @@ interface Message {
   sender: "user" | "ai";
 }
 
-const Chat = ({ modelId }: { modelId: string }) => {
+interface ChatProps {
+  modelId: string;
+  onMessage: (message: string) => void;
+}
+
+const Chat = ({ modelId, onMessage }: ChatProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [userInput, setUserInput] = useState("");
 
@@ -27,6 +32,8 @@ const Chat = ({ modelId }: { modelId: string }) => {
           { text: userInput, sender: "user" },
           { text: data.response, sender: "ai" },
         ]);
+
+        onMessage(data.response);
       } catch (error) {
         console.error("Error:", error);
       }

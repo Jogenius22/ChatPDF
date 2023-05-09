@@ -12,7 +12,7 @@ const serviceAccount = require("./serviceAccountKey.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  storageBucket: "chatpdf-e74f9.appspot.com",
 });
 
 const app = express();
@@ -73,12 +73,12 @@ app.post("/api/chat", async (req, res) => {
     const prompt = `You have uploaded a PDF file with the following content:\n\n${message}\n\nPlease provide a summary of the main points.`;
 
     const responseFromAI = await openai.Completion.create({
-      engine: modelId || "text-davinci-002",
+      engine: modelId || "text-davinci-003",
       prompt: prompt,
-      max_tokens: 150,
+      max_tokens: 500,
       n: 1,
       stop: null,
-      temperature: 0.5,
+      temperature: 0.7,
     });
 
     res.status(200).json({ response: responseFromAI.choices[0].text.trim() });
